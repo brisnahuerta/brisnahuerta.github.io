@@ -1,90 +1,281 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brisna Huerta | Data Scientist Portfolio</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Brisna Huerta | Data Science Portfolio</title>
+  <meta name="description" content="Portafolio de Brisna Huerta: Data Scientist Jr & Data Analyst. Python, SQL, Power BI, Machine Learning, Forecasting." />
   <style>
-    body { 
-      font-family: "Poppins", Arial, sans-serif; 
-      background: #f9fafc; 
-      color: #1a1a1a; 
-      margin: 0; 
-      padding: 0; 
+    :root{
+      --bg:#F7F4EF; --ink:#1E2422; --card:#FFFFFF; --muted:#5B635F;
+      --accent:#B3542E; --accent-2:#2E3B2A; --accent-3:#C7A45A;
+      --shadow:0 10px 25px rgba(30,36,34,.08); --radius:16px; --maxw:1040px;
     }
-    header {
-      background: #143b63;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
+    [data-theme="dark"]{ --bg:#121514; --ink:#F4F5F4; --card:#181C1A; --muted:#BFC5C1; --shadow:0 10px 25px rgba(0,0,0,.4) }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif; color:var(--ink); background:var(--bg); line-height:1.55}
+    a{color:var(--accent); text-decoration:none} a:hover{text-decoration:underline}
+    .topbar{display:flex; justify-content:flex-end; max-width:var(--maxw); margin:0 auto; padding:10px 20px}
+    .toggle{background:var(--card); border:1px solid rgba(30,36,34,.15); padding:8px 12px; border-radius:999px; cursor:pointer; box-shadow:var(--shadow); font-weight:600; color:var(--ink)}
+    header{position:relative; color:#fff; isolation:isolate;
+      background:
+        linear-gradient(180deg, rgba(179,84,46,.08), rgba(46,59,42,.06)),
+        url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=2400&auto=format&fit=crop') center/cover no-repeat; /* TODO: banner */
     }
-    h1 { margin: 0; font-size: 2em; }
-    h2 { color: #143b63; margin-top: 40px; }
-    main { padding: 40px; max-width: 900px; margin: auto; }
-    .project { background: #fff; padding: 20px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    a { color: #0b75d1; text-decoration: none; font-weight: 600; }
-    a:hover { text-decoration: underline; }
-    footer { text-align: center; padding: 30px; background: #eee; margin-top: 50px; }
+    header::after{content:""; position:absolute; inset:0; background:rgba(30,36,34,.45); z-index:0}
+    .hero{max-width:var(--maxw); margin:0 auto; padding:24px 20px 56px; position:relative; z-index:1}
+    .hero-grid{display:grid; grid-template-columns:140px 1fr; gap:24px; align-items:center}
+    .avatar{width:140px; height:140px; border-radius:50%; border:4px solid rgba(255,255,255,.9);
+      background:#fff url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=600&auto=format&fit=crop') center/cover; /* TODO: tu foto */
+      box-shadow:var(--shadow)
+    }
+    h1{margin:0 0 6px; font-size:clamp(24px,4vw,34px); font-weight:800; letter-spacing:.2px}
+    .subtitle{margin:6px 0 12px; font-size:clamp(14px,2.2vw,18px)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .chip{background:rgba(199,164,90,.18); color:#1E2422; border:1px solid rgba(199,164,90,.35); padding:6px 10px; border-radius:999px; font-size:13px; font-weight:600}
+    .cta-row{display:flex; flex-wrap:wrap; gap:12px; margin-top:14px}
+    .btn{display:inline-block; background:var(--accent); color:#fff; padding:10px 14px; border-radius:10px; font-weight:700}
+    .btn.secondary{background:var(--accent-2)}
+    main{max-width:var(--maxw); margin:0 auto; padding:32px 20px 64px}
+    section{margin-top:28px}
+    h2{font-size:clamp(18px,2.6vw,22px); margin:0 0 14px; color:var(--accent-2); border-left:6px solid var(--accent); padding-left:10px}
+    .lead{max-width:920px; color:var(--muted)}
+    .grid{display:grid; gap:18px; grid-template-columns:repeat(12,1fr)}
+    .card{grid-column:span 12; background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow); padding:18px; border:1px solid rgba(30,36,34,.06); display:grid; gap:8px}
+    @media(min-width:720px){ .card{grid-column:span 6} }
+    .kicker{color:var(--accent); font-weight:700; font-size:12px; letter-spacing:.6px; text-transform:uppercase}
+    .meta{font-size:13px; color:var(--muted)}
+    .pill{display:inline-block; padding:5px 9px; border-radius:999px; font-size:12px; margin:6px 6px 0 0; background:rgba(46,59,42,.08); border:1px dashed rgba(46,59,42,.25); color:var(--accent-2)}
+    .skills,.kw{display:flex; flex-wrap:wrap; gap:10px}
+    .skill{padding:8px 12px; border-radius:10px; background:var(--card); border:1px solid rgba(30,36,34,.08); box-shadow:var(--shadow); font-size:13px}
+    .kw span{font-size:13px; color:var(--muted)}
+    .timeline{position:relative; margin:10px 0 0; padding-left:18px}
+    .timeline::before{content:""; position:absolute; left:6px; top:0; bottom:0; width:2px; background:rgba(30,36,34,.2)}
+    .item{position:relative; margin-bottom:16px; padding-left:18px}
+    .item::before{content:""; position:absolute; left:-2px; top:6px; width:10px; height:10px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 3px rgba(179,84,46,.15)}
+    .role{font-weight:800} .where{color:var(--muted); font-size:13px} .desc{margin-top:6px}
+    .kpis{display:grid; gap:14px; grid-template-columns:repeat(12,1fr)}
+    .kpi{grid-column:span 12; background:var(--card); border:1px solid rgba(30,36,34,.08); border-radius:12px; padding:16px; box-shadow:var(--shadow)}
+    @media(min-width:720px){ .kpi{grid-column:span 3} }
+    .kpi .num{font-size:26px; font-weight:800; color:var(--accent)} .kpi .lbl{font-size:13px; color:var(--muted)}
+    .contact{background:linear-gradient(135deg, rgba(179,84,46,.08), rgba(46,59,42,.08)); border:1px solid rgba(30,36,34,.08); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+    .linkrow{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px}
+    footer{max-width:var(--maxw); margin:0 auto 36px; padding:0 20px; color:var(--muted); font-size:13px}
   </style>
 </head>
 <body>
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <button id="themeToggle" class="toggle" aria-label="Cambiar tema">🌗 Modo oscuro</button>
+  </div>
+
+  <!-- Hero -->
   <header>
-    <h1>Brisna Huerta</h1>
-    <p>Jr Data Scientist | Jr Data Analyst | Business Intelligence</p>
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="avatar" title="Foto de Brisna Huerta"></div>
+        <div>
+          <h1>Brisna Huerta</h1>
+          <p class="subtitle"><strong>Jr Data Scientist | Jr Data Analyst | Business Intelligence</strong><br/>
+            Convierto datos en decisiones: ML clásico, BI y automatización con enfoque humano y de negocio.</p>
+          <div class="chips">
+            <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Power BI</span>
+            <span class="chip">Forecasting</span><span class="chip">ETL</span><span class="chip">Data Storytelling</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn" href="assets/Data_Scientist_Brisna_Huerta.pdf" download>⬇️ Descargar CV</a> <!-- TODO: sube tu PDF -->
+            <a class="btn secondary" href="https://github.com/brisnahuerta" target="_blank" rel="noopener">🐙 Ver GitHub</a> <!-- TODO: tu perfil -->
+          </div>
+        </div>
+      </div>
+    </div>
   </header>
 
   <main>
+    <!-- Perfil profesional -->
     <section>
-      <h2>Sobre mí</h2>
-      <p>
-        Soy una Científica de Datos apasionada por transformar información en conocimiento accionable. 
-        Combino herramientas como <strong>Python, SQL, Power BI</strong> y <strong>Machine Learning</strong> 
-        para crear soluciones analíticas que optimizan procesos y apoyan la toma de decisiones.
+      <h2>Perfil profesional</h2>
+      <p class="lead">
+        Científica de Datos con formación en Administración y Finanzas, experiencia en análisis de información,
+        automatización de reportes y visualización de KPIs. Combino <strong>Python, SQL, Power BI</strong> y <strong>Machine Learning</strong> para
+        <em>forecasting</em>, <em>predictive modeling</em> y <em>data storytelling</em>, transformando datos en <em>insights</em> accionables que mejoran
+        eficiencia, rentabilidad y toma de decisiones. Enfoque en <strong>data cleaning</strong>, <strong>feature engineering</strong> y <strong>report automation</strong> para conectar datos con el negocio.
       </p>
     </section>
 
+    <!-- Habilidades técnicas -->
     <section>
-      <h2>Proyectos destacados</h2>
-
-      <div class="project">
-        <h3>Rusty Bargain – Predicción de precios de autos</h3>
-        <p>Modelo LightGBM para estimar precios óptimos de autos usados, mejorando 15 % la precisión.</p>
-        <p><a href="https://github.com/brisnahuerta/rusty-bargain">Ver en GitHub →</a></p>
+      <h2>Habilidades técnicas</h2>
+      <div class="skills">
+        <span class="skill">Python (pandas, NumPy, scikit-learn, matplotlib, seaborn)</span>
+        <span class="skill">SQL (joins, subqueries)</span>
+        <span class="skill">R</span>
+        <span class="skill">Power BI</span>
+        <span class="skill">Tableau</span>
+        <span class="skill">Excel avanzado</span>
+        <span class="skill">Data Cleaning</span>
+        <span class="skill">Predictive Modeling</span>
+        <span class="skill">Forecasting (Time Series)</span>
+        <span class="skill">A/B Testing</span>
+        <span class="skill">ETL & Pipelines</span>
+        <span class="skill">Data Validation</span>
+        <span class="skill">BigQuery · MySQL</span>
+        <span class="skill">GitHub · Jupyter · Colab</span>
       </div>
-
-      <div class="project">
-        <h3>Sweet Lift Taxi – Forecasting de demanda</h3>
-        <p>Predicción de viajes por hora y zona para optimizar asignación de conductores.</p>
-        <p><a href="https://github.com/brisnahuerta/sweet-lift-taxi">Ver en GitHub →</a></p>
-      </div>
-
-      <div class="project">
-        <h3>Good Seed – Estimación de edad con CNN</h3>
-        <p>Red neuronal convolucional para estimar edad a partir de rostros.</p>
-        <p><a href="https://github.com/brisnahuerta/good-seed">Ver en GitHub →</a></p>
-      </div>
-
-      <div class="project">
-        <h3>Film Junky Union – Análisis de sentimientos</h3>
-        <p>Clasificación de reseñas IMDB con NLP y modelos supervisados (F1 ≥ 0.85).</p>
-        <p><a href="https://github.com/brisnahuerta/film-junky-union">Ver en GitHub →</a></p>
-      </div>
-
-      <div class="project">
-        <h3>Interconnect – Churn Prediction</h3>
-        <p>Predicción de abandono de clientes en telecom usando LightGBM (AUC > 0.88).</p>
-        <p><a href="https://github.com/brisnahuerta/interconnect">Ver en GitHub →</a></p>
+      <div class="kw" style="margin-top:10px">
+        <span><strong>Technical Keywords:</strong> Python | SQL | Power BI | Tableau | Machine Learning | Predictive Models | Data Cleaning | Feature Engineering | Forecasting | Regression | Classification | Clustering | A/B Testing | Data Visualization | Data Validation | ETL | Pipelines | Reporting Automation | BigQuery | MySQL | KPIs | Business Intelligence | Data Storytelling | Statistics | Excel | macOS | Anaconda | GitHub | Jupyter Notebook</span>
       </div>
     </section>
 
+    <!-- KPIs / Logros -->
     <section>
+      <h2>Logros medibles / KPIs</h2>
+      <div class="kpis">
+        <div class="kpi"><div class="num">-40%</div><div class="lbl">Tiempo de elaboración de reportes con automatización (Power BI + Python)</div></div>
+        <div class="kpi"><div class="num">+15%</div><div class="lbl">Mejora de precisión en modelo de pricing (LightGBM vs baseline)</div></div>
+        <div class="kpi"><div class="num">AUC 0.88</div><div class="lbl">Modelo de churn en telecom con validación</div></div>
+        <div class="kpi"><div class="num">sMAPE &lt; 48</div><div class="lbl">Forecasting de demanda horaria (Sweet Lift Taxi)</div></div>
+      </div>
+    </section>
+
+    <!-- Proyectos -->
+    <section>
+      <h2>Proyectos destacados</h2>
+      <div class="grid">
+
+        <article class="card">
+          <div class="kicker">Predictive Modeling</div>
+          <h3>Rusty Bargain — Predicción de precios de autos</h3>
+          <div class="meta">LightGBM · +15% precisión · EDA + feature engineering</div>
+          <p>Modelo para estimar precios óptimos de autos usados comparando LR, RF y LightGBM. Documentación clara y reproducible.</p>
+          <div><span class="pill">Python</span><span class="pill">pandas</span><span class="pill">scikit-learn</span><span class="pill">LightGBM</span></div>
+          <a class="btn" href="https://github.com/brisnahuerta/rusty-bargain" target="_blank" rel="noopener">Ver en GitHub →</a> <!-- TODO -->
+        </article>
+
+        <article class="card">
+          <div class="kicker">Time Series</div>
+          <h3>Sweet Lift Taxi — Forecasting de demanda</h3>
+          <div class="meta">sMAPE objetivo &lt; 48 · ventanas temporales · señales por zona</div>
+          <p>Predicción de viajes por hora y zona para optimizar la asignación de conductores y reducir tiempos de espera.</p>
+          <div><span class="pill">Python</span><span class="pill">matplotlib</span><span class="pill">seaborn</span><span class="pill">scikit-learn</span></div>
+          <a class="btn" href="https://github.com/brisnahuerta/sweet-lift-taxi" target="_blank" rel="noopener">Ver en GitHub →</a> <!-- TODO -->
+        </article>
+
+        <article class="card">
+          <div class="kicker">Computer Vision</div>
+          <h3>Good Seed — Estimación de edad con CNN</h3>
+          <div class="meta">Transfer learning · regularización · métricas de validación</div>
+          <p>CNN para estimar edad a partir de rostros; pipeline claro y entrenable en Colab.</p>
+          <div><span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span></div>
+          <a class="btn" href="https://github.com/brisnahuerta/good-seed" target="_blank" rel="noopener">Ver en GitHub →</a> <!-- TODO -->
+        </article>
+
+        <article class="card">
+          <div class="kicker">NLP</div>
+          <h3>Film Junky Union — Análisis de sentimientos</h3>
+          <div class="meta">F1 ≥ 0.85 · TF-IDF · LR / Gradient Boosting</div>
+          <p>Clasificación de reseñas IMDB con NLP; comparación de modelos y reporte de métricas.</p>
+          <div><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">TF-IDF</span></div>
+          <a class="btn" href="https://github.com/brisnahuerta/film-junky-union" target="_blank" rel="noopener">Ver en GitHub →</a> <!-- TODO -->
+        </article>
+
+        <article class="card">
+          <div class="kicker">Churn</div>
+          <h3>Interconnect — Churn Prediction</h3>
+          <div class="meta">AUC &gt; 0.88 · balance de clases · validación</div>
+          <p>Modelo de churn para telecom; explica variables clave y acciones de retención.</p>
+          <div><span class="pill">LightGBM</span><span class="pill">GridSearchCV</span><span class="pill">pandas</span></div>
+          <a class="btn" href="https://github.com/brisnahuerta/interconnect" target="_blank" rel="noopener">Ver en GitHub →</a> <!-- TODO -->
+        </article>
+
+      </div>
+    </section>
+
+    <!-- Experiencia -->
+    <section>
+      <h2>Experiencia</h2>
+      <div class="timeline">
+        <div class="item">
+          <div class="role">Analista Estadística de Datos Jr</div>
+          <div class="where">NielsenIQ · Dic 2024 – Jun 2025</div>
+          <p class="desc">Automatización de reportes y dashboards en Power BI; validación de datos con SQL/Python; métricas de muestra y proyección (time series); colaboración LATAM (Perú/Brasil).</p>
+        </div>
+        <div class="item">
+          <div class="role">Docente de Matemáticas</div>
+          <div class="where">Colegio JPRH · Ene 2016 – Abr 2022</div>
+          <p class="desc">Análisis de desempeño y visualización de resultados; desarrollo de pensamiento lógico y estadístico.</p>
+        </div>
+        <div class="item">
+          <div class="role">Coordinadora de Nómina / Analista de Datos</div>
+          <div class="where">Petstar · Ene 2013 – Ene 2016</div>
+          <p class="desc">Integridad de datos de nómina, automatización de reportes y dashboards para decisiones salariales.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Educación -->
+    <section>
+      <h2>Educación</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="kicker">Bootcamp</div>
+          <h3>TripleTen — Data Science (2024–2025)</h3>
+          <p class="meta">Modelado predictivo · series de tiempo · NLP · métricas (RMSE, F1, ROC-AUC)</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Carrera</div>
+          <h3>Coderhouse — Data Scientist (2022–2023)</h3>
+          <p class="meta">Python · visualización · fundamentos de ML</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Certificación</div>
+          <h3>Google Data Analytics — Coursera (2022–2023)</h3>
+          <p class="meta">Análisis de datos · SQL · tableros · storytelling</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Especialización</div>
+          <h3>Associate Cloud Engineer — Coursera</h3>
+          <p class="meta">Nube · bases de datos · productividad</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Licenciatura</div>
+          <h3>UAM — Administración (Finanzas)</h3>
+          <p class="meta">Enfoque de negocio y métricas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contacto -->
+    <section class="contact">
       <h2>Contacto</h2>
-      <p>📧 ibrisna@gmail.com | 💼 <a href="https://www.linkedin.com/in/">LinkedIn</a> | 🐍 <a href="https://github.com/brisnahuerta">GitHub</a></p>
+      <p>¿Te interesa colaborar o conocer más sobre mis proyectos?</p>
+      <div class="linkrow">
+        <a class="btn" href="mailto:ibrisna@gmail.com">📧 Correo</a>
+        <a class="btn" href="https://www.linkedin.com/in/<!-- TODO: tu handle -->" target="_blank" rel="noopener">💼 LinkedIn</a>
+        <a class="btn" href="https://github.com/brisnahuerta" target="_blank" rel="noopener">🐙 GitHub</a>
+      </div>
     </section>
   </main>
 
   <footer>
-    <p>© 2025 Brisna Huerta — Data Science Portfolio</p>
+    © 2025 · Brisna Huerta — Hecho con datos, café y colores Deep Autumn.
   </footer>
+
+  <script>
+    // Preferencia de tema
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+    const btn = document.getElementById('themeToggle');
+    const setLabel = () => btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark') ? '🌞 Modo claro' : '🌗 Modo oscuro';
+    setLabel();
+    btn.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      setLabel();
+    });
+  </script>
 </body>
 </html>
