@@ -69,6 +69,27 @@
       color: var(--ink)
     }
 
+    .lang-selector {
+      display: flex;
+      gap: 8px;
+      margin-right: 12px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px;
+      font-size: 14px;
+    }
+
+    .lang-btn.active {
+      color: var(--accent);
+      text-decoration: underline;
+    }
+
     header {
       position: relative;
       color: #fff;
@@ -392,6 +413,11 @@
 
   <!-- Topbar -->
   <div class="topbar">
+    <div class="lang-selector">
+      <button class="lang-btn active" onclick="changeLanguage('es')">ES</button>
+      <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+      <button class="lang-btn" onclick="changeLanguage('pt')">PT</button>
+    </div>
     <button id="themeToggle" class="toggle" aria-label="Cambiar tema">Modo oscuro</button>
   </div>
 
@@ -402,7 +428,8 @@
         <div class="avatar" title="Foto de Brisna Huerta"></div>
         <div>
           <h1>Brisna Huerta</h1>
-          <p class="subtitle"><strong>Jr Data Scientist | Jr Data Analyst | Business Intelligence</strong><br />
+          <p class="subtitle" data-i18n="hero.subtitle"><strong>Jr Data Scientist | Jr Data Analyst | Business
+              Intelligence</strong><br />
             Convierto datos en decisiones: ML clásico, BI y automatización con enfoque humano y de negocio.</p>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Power BI</span>
@@ -410,9 +437,10 @@
               Storytelling</span>
           </div>
           <div class="cta-row">
-            <a class="btn" href="assets/Data_Scientist_Brisna_Huerta.pdf" download>Descargar CV</a>
+            <a class="btn" href="assets/Data_Scientist_Brisna_Huerta.pdf" download data-i18n="cta.cv">Descargar CV</a>
             <!-- TODO: sube tu PDF -->
-            <a class="btn secondary" href="https://github.com/brisnahuerta" target="_blank" rel="noopener">Ver
+            <a class="btn secondary" href="https://github.com/brisnahuerta" target="_blank" rel="noopener"
+              data-i18n="cta.github">Ver
               GitHub</a> <!-- TODO: tu perfil -->
           </div>
         </div>
@@ -423,27 +451,27 @@
   <main>
     <!-- Sobre mí -->
     <section>
-      <h2>Sobre mí</h2>
+      <h2 data-i18n="about.title">Sobre mí</h2>
       <div class="about-me">
-        <p>
+        <p data-i18n="about.p1">
           Soy <strong>Brisna Huerta</strong>, una persona que siempre ha creído que entender las cosas a profundidad es
           la mejor forma de transformar cualquier entorno.
         </p>
-        <p>
+        <p data-i18n="about.p2">
           Mi camino comenzó organizando datos en Nómina y Compensaciones, sin imaginar que ese hábito de buscar claridad
           me llevaría a descubrir una verdadera pasión: <em>encontrar historias dentro de los datos</em>.
         </p>
-        <p>
+        <p data-i18n="about.p3">
           Para mí, analizar información no es solo generar números; es <strong>iluminar decisiones</strong>,
           <strong>anticipar problemas</strong> y <strong>abrir posibilidades</strong>. Es crear orden donde antes había
           dudas, y convertir lo complejo en algo útil y humano.
         </p>
-        <p>
+        <p data-i18n="about.p4">
           Hoy, desde <strong>Data Science</strong>, combino lo que sé —Python, SQL, Machine Learning, Power BI y Gen AI—
           con lo que siempre me ha movido: la curiosidad, el aprendizaje constante y el deseo genuino de aportar algo
           que haga una diferencia real.
         </p>
-        <p class="highlight">
+        <p class="highlight" data-i18n="about.highlight">
           Trabajo con datos porque ahí encuentro lo que más me inspira:<br />
           <strong>el poder de comprender, mejorar y crear nuevas oportunidades.</strong>
         </p>
@@ -455,41 +483,44 @@
 
     <!-- KPIs / Logros -->
     <section>
-      <h2>KPIs de mis modelos</h2>
+      <h2 data-i18n="kpi.title">KPIs de mis modelos</h2>
       <div class="kpis">
         <div class="kpi">
           <div class="num">-40%</div>
-          <div class="lbl">Tiempo de elaboración de reportes con automatización (Power BI + Python)</div>
+          <div class="lbl" data-i18n="kpi.1.lbl">Tiempo de elaboración de reportes con automatización (Power BI +
+            Python)</div>
         </div>
         <div class="kpi">
           <div class="num">+15%</div>
-          <div class="lbl">Mejora de precisión en modelo de pricing (LightGBM vs baseline)</div>
+          <div class="lbl" data-i18n="kpi.2.lbl">Mejora de precisión en modelo de pricing (LightGBM vs baseline)</div>
         </div>
         <div class="kpi">
           <div class="num">AUC 0.88</div>
-          <div class="lbl">Modelo de churn en telecom con validación</div>
+          <div class="lbl" data-i18n="kpi.3.lbl">Modelo de churn en telecom con validación</div>
         </div>
         <div class="kpi">
           <div class="num">sMAPE &lt; 48</div>
-          <div class="lbl">Forecasting de demanda horaria (Sweet Lift Taxi)</div>
+          <div class="lbl" data-i18n="kpi.4.lbl">Forecasting de demanda horaria (Sweet Lift Taxi)</div>
         </div>
       </div>
     </section>
 
     <!-- Proyectos -->
     <section>
-      <h2>Estos son algunos de mis proyectos</h2>
+      <h2 data-i18n="projects.title">Estos son algunos de mis proyectos</h2>
       <div class="grid">
 
         <article class="card">
           <div class="kicker">Predictive Modeling</div>
           <h3>Rusty Bargain — Predicción de precios de autos</h3>
           <div class="meta">LightGBM · +15% precisión · EDA + feature engineering</div>
-          <p>Modelo para estimar precios óptimos de autos usados comparando LR, RF y LightGBM. Documentación clara y
+          <p data-i18n="project.rusty.desc">Modelo para estimar precios óptimos de autos usados comparando LR, RF y
+            LightGBM. Documentación clara y
             reproducible.</p>
           <div><span class="pill">Python</span><span class="pill">pandas</span><span
               class="pill">scikit-learn</span><span class="pill">LightGBM</span></div>
-          <a class="btn" href="https://github.com/brisnahuerta/rusty-bargain" target="_blank" rel="noopener">Ver en
+          <a class="btn" href="https://github.com/brisnahuerta/rusty-bargain" target="_blank" rel="noopener"
+            data-i18n="project.view">Ver en
             GitHub →</a> <!-- TODO -->
         </article>
 
@@ -497,11 +528,13 @@
           <div class="kicker">Time Series</div>
           <h3>Sweet Lift Taxi — Forecasting de demanda</h3>
           <div class="meta">sMAPE objetivo &lt; 48 · ventanas temporales · señales por zona</div>
-          <p>Predicción de viajes por hora y zona para optimizar la asignación de conductores y reducir tiempos de
+          <p data-i18n="project.sweet.desc">Predicción de viajes por hora y zona para optimizar la asignación de
+            conductores y reducir tiempos de
             espera.</p>
           <div><span class="pill">Python</span><span class="pill">matplotlib</span><span
               class="pill">seaborn</span><span class="pill">scikit-learn</span></div>
-          <a class="btn" href="https://github.com/brisnahuerta/sweet-lift-taxi" target="_blank" rel="noopener">Ver en
+          <a class="btn" href="https://github.com/brisnahuerta/sweet-lift-taxi" target="_blank" rel="noopener"
+            data-i18n="project.view">Ver en
             GitHub →</a> <!-- TODO -->
         </article>
 
@@ -509,9 +542,11 @@
           <div class="kicker">Computer Vision</div>
           <h3>Good Seed — Estimación de edad con CNN</h3>
           <div class="meta">Transfer learning · regularización · métricas de validación</div>
-          <p>CNN para estimar edad a partir de rostros; pipeline claro y entrenable en Colab.</p>
+          <p data-i18n="project.goodseed.desc">CNN para estimar edad a partir de rostros; pipeline claro y entrenable en
+            Colab.</p>
           <div><span class="pill">TensorFlow</span><span class="pill">Keras</span><span class="pill">OpenCV</span></div>
-          <a class="btn" href="https://github.com/brisnahuerta/good-seed" target="_blank" rel="noopener">Ver en GitHub
+          <a class="btn" href="https://github.com/brisnahuerta/good-seed" target="_blank" rel="noopener"
+            data-i18n="project.view">Ver en GitHub
             →</a> <!-- TODO -->
         </article>
 
@@ -519,9 +554,11 @@
           <div class="kicker">NLP</div>
           <h3>Film Junky Union — Análisis de sentimientos</h3>
           <div class="meta">F1 ≥ 0.85 · TF-IDF · LR / Gradient Boosting</div>
-          <p>Clasificación de reseñas IMDB con NLP; comparación de modelos y reporte de métricas.</p>
+          <p data-i18n="project.film.desc">Clasificación de reseñas IMDB con NLP; comparación de modelos y reporte de
+            métricas.</p>
           <div><span class="pill">Python</span><span class="pill">NLP</span><span class="pill">TF-IDF</span></div>
-          <a class="btn" href="https://github.com/brisnahuerta/film-junky-union" target="_blank" rel="noopener">Ver en
+          <a class="btn" href="https://github.com/brisnahuerta/film-junky-union" target="_blank" rel="noopener"
+            data-i18n="project.view">Ver en
             GitHub →</a> <!-- TODO -->
         </article>
 
@@ -529,10 +566,12 @@
           <div class="kicker">Churn</div>
           <h3>Interconnect — Churn Prediction</h3>
           <div class="meta">AUC &gt; 0.88 · balance de clases · validación</div>
-          <p>Modelo de churn para telecom; explica variables clave y acciones de retención.</p>
+          <p data-i18n="project.interconnect.desc">Modelo de churn para telecom; explica variables clave y acciones de
+            retención.</p>
           <div><span class="pill">LightGBM</span><span class="pill">GridSearchCV</span><span class="pill">pandas</span>
           </div>
-          <a class="btn" href="https://github.com/brisnahuerta/interconnect" target="_blank" rel="noopener">Ver en
+          <a class="btn" href="https://github.com/brisnahuerta/interconnect" target="_blank" rel="noopener"
+            data-i18n="project.view">Ver en
             GitHub →</a> <!-- TODO -->
         </article>
 
@@ -544,10 +583,10 @@
 
     <!-- Contacto -->
     <section class="contact">
-      <h2>Contacto</h2>
-      <p>¿Te interesa colaborar o conocer más sobre mis proyectos?</p>
+      <h2 data-i18n="contact.title">Contacto</h2>
+      <p data-i18n="contact.desc">¿Te interesa colaborar o conocer más sobre mis proyectos?</p>
       <div class="linkrow">
-        <a class="btn" href="mailto:ibrisna@gmail.com">Correo</a>
+        <a class="btn" href="mailto:ibrisna@gmail.com" data-i18n="contact.email">Correo</a>
         <a class="btn" href="https://www.linkedin.com/in/brisnahuerta/" target="_blank" rel="noopener">
           LinkedIn</a>
       </div>
@@ -555,17 +594,143 @@
   </main>
 
   <footer>
-    © 2025 · Brisna Huerta — Hecho con datos, café y colores Deep Autumn.
+    <span data-i18n="footer">© 2025 · Brisna Huerta</span>
   </footer>
 
   <script>
-    // Preferencia de tema
+    // Traducciones
+    const translations = {
+      es: {
+        "hero.subtitle": "<strong>Jr Data Scientist | Jr Data Analyst | Business Intelligence</strong><br />Convierto datos en decisiones: ML clásico, BI y automatización con enfoque humano y de negocio.",
+        "cta.cv": "Descargar CV",
+        "cta.github": "Ver GitHub",
+        "about.title": "Sobre mí",
+        "about.p1": "Soy <strong>Brisna Huerta</strong>, una persona que siempre ha creído que entender las cosas a profundidad es la mejor forma de transformar cualquier entorno.",
+        "about.p2": "Mi camino comenzó organizando datos en Nómina y Compensaciones, sin imaginar que ese hábito de buscar claridad me llevaría a descubrir una verdadera pasión: <em>encontrar historias dentro de los datos</em>.",
+        "about.p3": "Para mí, analizar información no es solo generar números; es <strong>iluminar decisiones</strong>, <strong>anticipar problemas</strong> y <strong>abrir posibilidades</strong>. Es crear orden donde antes había dudas, y convertir lo complejo en algo útil y humano.",
+        "about.p4": "Hoy, desde <strong>Data Science</strong>, combino lo que sé —Python, SQL, Machine Learning, Power BI y Gen AI— con lo que siempre me ha movido: la curiosidad, el aprendizaje constante y el deseo genuino de aportar algo que haga una diferencia real.",
+        "about.highlight": "Trabajo con datos porque ahí encuentro lo que más me inspira:<br /><strong>el poder de comprender, mejorar y crear nuevas oportunidades.</strong>",
+        "kpi.title": "KPIs de mis modelos",
+        "kpi.1.lbl": "Tiempo de elaboración de reportes con automatización (Power BI + Python)",
+        "kpi.2.lbl": "Mejora de precisión en modelo de pricing (LightGBM vs baseline)",
+        "kpi.3.lbl": "Modelo de churn en telecom con validación",
+        "kpi.4.lbl": "Forecasting de demanda horaria (Sweet Lift Taxi)",
+        "projects.title": "Estos son algunos de mis proyectos",
+        "project.rusty.desc": "Modelo para estimar precios óptimos de autos usados comparando LR, RF y LightGBM. Documentación clara y reproducible.",
+        "project.sweet.desc": "Predicción de viajes por hora y zona para optimizar la asignación de conductores y reducir tiempos de espera.",
+        "project.goodseed.desc": "CNN para estimar edad a partir de rostros; pipeline claro y entrenable en Colab.",
+        "project.film.desc": "Clasificación de reseñas IMDB con NLP; comparación de modelos y reporte de métricas.",
+        "project.interconnect.desc": "Modelo de churn para telecom; explica variables clave y acciones de retención.",
+        "project.view": "Ver en GitHub →",
+        "contact.title": "Contacto",
+        "contact.desc": "¿Te interesa colaborar o conocer más sobre mis proyectos?",
+        "contact.email": "Correo",
+        "footer": "© 2025 · Brisna Huerta",
+        "theme.dark": "Modo oscuro",
+        "theme.light": "Modo claro"
+      },
+      en: {
+        "hero.subtitle": "<strong>Jr Data Scientist | Jr Data Analyst | Business Intelligence</strong><br />Turning data into decisions: Classical ML, BI, and automation with a human and business focus.",
+        "cta.cv": "Download CV",
+        "cta.github": "View GitHub",
+        "about.title": "About Me",
+        "about.p1": "I am <strong>Brisna Huerta</strong>, someone who has always believed that understanding things in depth is the best way to transform any environment.",
+        "about.p2": "My journey began organizing data in Payroll and Compensation, without imagining that this habit of seeking clarity would lead me to discover a true passion: <em>finding stories within data</em>.",
+        "about.p3": "For me, analyzing information is not just generating numbers; it is <strong>illuminating decisions</strong>, <strong>anticipating problems</strong>, and <strong>opening possibilities</strong>. It is creating order where there was doubt, and turning the complex into something useful and human.",
+        "about.p4": "Today, from <strong>Data Science</strong>, I combine what I know —Python, SQL, Machine Learning, Power BI, and Gen AI— with what has always moved me: curiosity, constant learning, and the genuine desire to contribute something that makes a real difference.",
+        "about.highlight": "I work with data because that's where I find what inspires me most:<br /><strong>the power to understand, improve, and create new opportunities.</strong>",
+        "kpi.title": "Model KPIs",
+        "kpi.1.lbl": "Reporting time reduction with automation (Power BI + Python)",
+        "kpi.2.lbl": "Pricing model accuracy improvement (LightGBM vs baseline)",
+        "kpi.3.lbl": "Telecom churn model with validation",
+        "kpi.4.lbl": "Hourly demand forecasting (Sweet Lift Taxi)",
+        "projects.title": "Here are some of my projects",
+        "project.rusty.desc": "Model to estimate optimal used car prices comparing LR, RF, and LightGBM. Clear and reproducible documentation.",
+        "project.sweet.desc": "Hourly trip prediction by zone to optimize driver allocation and reduce wait times.",
+        "project.goodseed.desc": "CNN to estimate age from faces; clear pipeline trainable in Colab.",
+        "project.film.desc": "IMDB review classification with NLP; model comparison and metrics report.",
+        "project.interconnect.desc": "Churn model for telecom; explains key variables and retention actions.",
+        "project.view": "View on GitHub →",
+        "contact.title": "Contact",
+        "contact.desc": "Interested in collaborating or learning more about my projects?",
+        "contact.email": "Email",
+        "footer": "© 2025 · Brisna Huerta",
+        "theme.dark": "Dark Mode",
+        "theme.light": "Light Mode"
+      },
+      pt: {
+        "hero.subtitle": "<strong>Jr Data Scientist | Jr Data Analyst | Business Intelligence</strong><br />Transformando dados em decisões: ML clássico, BI e automação com foco humano e de negócios.",
+        "cta.cv": "Baixar CV",
+        "cta.github": "Ver GitHub",
+        "about.title": "Sobre mim",
+        "about.p1": "Sou <strong>Brisna Huerta</strong>, alguém que sempre acreditou que entender as coisas em profundidade é a melhor maneira de transformar qualquer ambiente.",
+        "about.p2": "Minha jornada começou organizando dados em Folha de Pagamento e Remuneração, sem imaginar que esse hábito de buscar clareza me levaria a descobrir uma verdadeira paixão: <em>encontrar histórias dentro dos dados</em>.",
+        "about.p3": "Para mim, analisar informações não é apenas gerar números; é <strong>iluminar decisões</strong>, <strong>antecipar problemas</strong> e <strong>abrir possibilidades</strong>. É criar ordem onde antes havia dúvidas e transformar o complexo em algo útil e humano.",
+        "about.p4": "Hoje, em <strong>Data Science</strong>, combino o que sei —Python, SQL, Machine Learning, Power BI e Gen AI— com o que sempre me moveu: curiosidade, aprendizado constante e o desejo genuíno de contribuir com algo que faça uma diferença real.",
+        "about.highlight": "Trabalho com dados porque é onde encontro o que mais me inspira:<br /><strong>o poder de compreender, melhorar e criar novas oportunidades.</strong>",
+        "kpi.title": "KPIs dos meus modelos",
+        "kpi.1.lbl": "Tempo de elaboração de relatórios com automação (Power BI + Python)",
+        "kpi.2.lbl": "Melhoria na precisão do modelo de precificação (LightGBM vs baseline)",
+        "kpi.3.lbl": "Modelo de churn em telecom com validação",
+        "kpi.4.lbl": "Previsão de demanda horária (Sweet Lift Taxi)",
+        "projects.title": "Aqui estão alguns dos meus projetos",
+        "project.rusty.desc": "Modelo para estimar preços ótimos de carros usados comparando LR, RF e LightGBM. Documentação clara e reprodutível.",
+        "project.sweet.desc": "Previsão de viagens por hora e zona para otimizar a alocação de motoristas e reduzir tempos de espera.",
+        "project.goodseed.desc": "CNN para estimar idade a partir de rostos; pipeline claro e treinável no Colab.",
+        "project.film.desc": "Classificação de avaliações IMDB com NLP; comparação de modelos e relatório de métricas.",
+        "project.interconnect.desc": "Modelo de churn para telecom; explica variáveis-chave e ações de retenção.",
+        "project.view": "Ver no GitHub →",
+        "contact.title": "Contato",
+        "contact.desc": "Interessado em colaborar ou saber mais sobre meus projetos?",
+        "contact.email": "Email",
+        "footer": "© 2025 · Brisna Huerta",
+        "theme.dark": "Modo Escuro",
+        "theme.light": "Modo Claro"
+      }
+    };
+
+    function changeLanguage(lang) {
+      localStorage.setItem('lang', lang);
+      document.documentElement.setAttribute('lang', lang);
+
+      // Update buttons state
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+      });
+
+      updateContent();
+    }
+
+    function updateContent() {
+      const lang = localStorage.getItem('lang') || 'es';
+      const texts = translations[lang];
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (texts[key]) {
+          el.innerHTML = texts[key];
+        }
+      });
+    }
+
+    // Initialize
+    const savedLang = localStorage.getItem('lang') || 'es';
+    changeLanguage(savedLang);
+
+    // Theme logic
     const saved = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     document.documentElement.setAttribute('data-theme', saved || (prefersDark ? 'dark' : 'light'));
+
     const btn = document.getElementById('themeToggle');
-    const setLabel = () => btn.textContent = (document.documentElement.getAttribute('data-theme') === 'dark') ? 'Modo claro' : 'Modo oscuro';
+    const setLabel = () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      btn.setAttribute('data-i18n', isDark ? 'theme.light' : 'theme.dark');
+      updateContent(); // Re-apply translation for the button
+    };
+
     setLabel();
+
     btn.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', next);
